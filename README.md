@@ -114,7 +114,6 @@ http://127.0.0.1:8000/docs
 cd frontend
 python -m http.server 5500
 ```
-
 Then open:
 
 ```
