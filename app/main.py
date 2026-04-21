@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import search   # ✅ FIXED
+from app.routers import search  
 from app.services.indexer import Indexer
 from fastapi.middleware.cors import CORSMiddleware
 

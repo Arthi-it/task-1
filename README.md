@@ -144,7 +144,7 @@ GET /search?q=artificial intelligence in finance
 ```json
 	
 Response body
-Download
+
 {
   "results": [
     {
