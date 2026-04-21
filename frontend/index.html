@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">  <!-- ✅ IMPORTANT FIX -->
+    <title>Semantic Search Engine</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fafafa;
+            border: 1px solid #eee;
+        }
+
+        .result strong {
+            font-size: 16px;
+        }
+
+        .score {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .snippet {
+            margin-top: 8px;
+            color: #333;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🔍 Document Search</h2>
+
+    <div class="search-box">
+        <input type="text" id="query" placeholder="Enter your search query">
+        <button onclick="search()">Search</button>
+    </div>
+
+    <div id="results"></div>
+
+</div>
+
+<script>
+async function search() {
+    const query = document.getElementById("query").value;
+
+    if (!query) {
+        alert("Please enter a query");
+        return;
+    }
+
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "🔍 Searching...";
+
+    const res = await fetch(`http://127.0.0.1:8000/search?q=${encodeURIComponent(query)}`);
+    const data = await res.json();
+
+    resultsDiv.innerHTML = "";
+
+    data.results.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "result";
+
+        div.innerHTML = `
+            <strong>${r.document}</strong><br>
+            <span class="score">Score: ${r.score}</span>
+            <div class="snippet">${r.snippet}</div>
+        `;
+
+        resultsDiv.appendChild(div);
+    });
+}
+</script>
+
+</body>
+</html>

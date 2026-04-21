@@ -1,0 +1,44 @@
+# 🔒 Python
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+
+# 🧪 Virtual Environment
+
+.venv/
+venv/
+env/
+
+# 📦 Build / Distribution
+
+build/
+dist/
+*.egg-info/
+
+# 📝 Logs
+
+*.log
+
+# ⚙️ Environment Variables
+
+.env
+
+# 🧠 VS Code
+
+.vscode/
+
+# 🖥️ OS Files
+
+.DS_Store
+Thumbs.db
+
+# 🔐 UV files (optional)
+
+uv.lock
+
+# 🗂️ Temporary files
+
+*.tmp
+*.swp
